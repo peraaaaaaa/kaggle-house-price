@@ -125,6 +125,22 @@ sns.heatmap(corr, annot=True, fmt=".1f", linewidths=1, mask=mask, cmap=sns.color
 plt.show()
 
 
+
+#### 绘制缺失值
+# 导入missingno库
+import missingno as msno
+
+# 绘制缺失值矩阵图
+msno.matrix(train)
+
+# 绘制缺失值条形图
+msno.bar(train)
+
+# 绘制缺失值热力图
+msno.heatmap(train)
+
+
+
 #############Feature Engineering 特征工程########################
 # 填充 "MasVnrArea" 列的缺失值，并根据填充后的值更新 "MasVnrType" 列
 df.loc[:,"MasVnrArea"] = df["MasVnrArea"].fillna(0)
@@ -140,6 +156,24 @@ def drop_feature(data,columns, percentage = 95):
 
 df = drop_feature(df,cat_cols,percentage = 95)
 num_cols, cat_cols = find_col_dtypes(df, target)
+
+
+
+####处理缺失值后再次绘制
+
+# 导入missingno库
+import missingno as msno
+
+# 绘制缺失值矩阵图
+msno.matrix(df)
+
+# 绘制缺失值条形图
+msno.bar(df)
+
+# 绘制缺失值热力图
+msno.heatmap(df)
+
+
 
 # 对分类变量进行稀有类别编码
 def rare_encoder(dataframe, rare_perc):
